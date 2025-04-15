@@ -2,7 +2,7 @@
 title: "How Do I Find Which Period a Check or Other Item Cleared the Bank"
 date: 2021-07-01T06:13:56-04:00
 draft: false
-tags: ["bank-rec","check","reporting","workaround"]
+tags: ["QuickBooks","bank-rec","check","reporting","workaround"]
 categories: ["QB"]
 hidedate: true
 ---
