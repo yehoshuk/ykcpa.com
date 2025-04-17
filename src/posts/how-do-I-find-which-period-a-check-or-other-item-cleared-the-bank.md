@@ -6,7 +6,7 @@ tags: ["QuickBooks","bank-rec","check","reporting","workaround"]
 categories: ["QB"]
 hidedate: true
 ---
-> Q:
+### Q:
 
 I know the check number, payee, check date, etc. and I can easily find that information in QB. But I’m having trouble finding when that check cleared.
 
@@ -16,7 +16,7 @@ I need to know which month that check cleared so that I can go into the bank and
 
 How do I find the period that a check cleared the bank?
 ___
-> A:
+### A:
 
 The trick is to change this reconciled transaction so that it will show up on the ‘Reconciliation Discrepancy’ report long enough for you to see in which period it cleared. After you have that info, remember to change it back so that you don’t actually have a reconciliation discrepancy left!
 
@@ -26,7 +26,7 @@ The trick is to change this reconciled transaction so that it will show up on th
 4.  Select the reconciled account
         The modified transaction will appear on the discrepancy report, below the statement date that it was reconciled with
 
-# IMPORTANT —>> Remember to change the transaction back to the cleared amount or the reconciliation will be out of balance!!! <<— IMPORTANT
+## IMPORTANT —>> Remember to change the transaction back to the cleared amount or the reconciliation will be out of balance!!! <<— IMPORTANT
 <!--stackedit_data:
 eyJoaXN0b3J5IjpbLTE0NzczNTE0MzddfQ==
 -->
