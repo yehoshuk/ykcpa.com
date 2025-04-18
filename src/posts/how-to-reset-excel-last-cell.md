@@ -3,8 +3,7 @@ title: How to reset the last cell in an Excel worksheet
 date: '2019-06-18'
 tags:
   - excel
-  - code
-  - blog
+  - VBA
 ---
 After I've added/deleted/moved/copied... basically, done enough work in an Excel worksheet so that when I hit Control-End, Excel goes to a cell far, far away from any of my work, I do the following to reset the "last cell"
 
@@ -23,3 +22,6 @@ After I've added/deleted/moved/copied... basically, done enough work in an Excel
     `ActiveSheet.UsedRange`
 
 ###### Now hit Control-End again and see how Excel jumps upwards and/or leftwards... you've done it!
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTI4NzI4MDc2MF19
+-->
