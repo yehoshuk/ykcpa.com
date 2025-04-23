@@ -8,6 +8,14 @@ npm-debug.*
 node_modules
 dist 
 
+.vscode/settings.json
+.vscode/extensions.json
+.vscode/launch.json
+.vscode/tasks.json
+.vscode/*.code-workspace
+.vscode/*.sublime-workspace
+.vscode/*.sublime-project
+
 # Specifics
 
 # Hide design tokens

@@ -1,0 +1,7 @@
+{
+    "workbench.editor.autoLockGroups": {
+        "mainThreadWebview-markdown.preview": true
+    },
+    "workbench.editor.alwaysShowEditorActions": true,
+    "window.density.editorTabHeight": "compact"
+}
