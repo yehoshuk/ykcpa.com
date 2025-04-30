@@ -22,6 +22,3 @@ After I've added/deleted/moved/copied... basically, done enough work in an Excel
     `ActiveSheet.UsedRange`
 
 ###### Now hit Control-End again and see how Excel jumps upwards and/or leftwards... you've done it!
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI4NzI4MDc2MF19
--->
