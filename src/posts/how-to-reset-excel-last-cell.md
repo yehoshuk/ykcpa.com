@@ -19,6 +19,6 @@ Press `Control-G`
 
 Type the following in the Immediate window and then press Enter:
 
-    `ActiveSheet.UsedRange`
+`ActiveSheet.UsedRange`
 
 #### Now hit Control-End again and see how Excel jumps upwards and/or leftwards... you've done it!
