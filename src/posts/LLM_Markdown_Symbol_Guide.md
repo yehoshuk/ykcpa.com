@@ -7,8 +7,6 @@ tags:
   - markdown
   - LLM
 ---
-# Markdown Symbols - The key to speaking "LLM-ese"
-
 ## When to Use Markdown in Prompts
 
 Use it when you want to:
