@@ -27,3 +27,6 @@ The trick is to change this reconciled transaction so that it will show up on th
         The modified transaction will appear on the discrepancy report, below the statement date that it was reconciled with
 
 ## IMPORTANT —>> Remember to change the transaction back to the cleared amount or the reconciliation will be out of balance!!! <<— IMPORTANT
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTYyOTQyMzEzNF19
+-->
