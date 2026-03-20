@@ -1,52 +1,45 @@
 {
-  "name": "hylia",
-  "version": "0.7.0",
-  "description": "A simple Eleventy starter kit to help you have a blog of your own",
-  "main": "index.js",
+  "name": "ykcpa.com",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Personal notes blog for Excel, accounting, AI/LLM topics",
+  "author": {
+    "name": "Josh Krupnick",
+    "email": "josh@ykcpa.com",
+    "url": "https://ykcpa.com"
+  },
+  "homepage": "https://ykcpa.com",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
   "dependencies": {
-    "@11ty/eleventy": "^0.10.0",
-    "@11ty/eleventy-plugin-rss": "^1.0.7",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^2.0.3",
-    "@tbranyen/jsdom": "^13.0.0",
-    "concurrently": "^4.1.2",
-    "html-minifier": "^4.0.0",
-    "image-size": "^0.8.3",
-    "json-to-scss": "^1.5.0",
-    "sass": "^1.26.3",
-    "semver": "^6.3.0",
-    "slugify": "^1.4.0",
-    "stalfos": "github:hankchizljaw/stalfos#c8971d22726326cfc04089b2da4d51eeb1ebb0eb"
+    "@astrojs/netlify": "^6.0.0",
+    "@astrojs/rss": "^4.0.15",
+    "@astrojs/sitemap": "^3.7.0",
+    "@eliancodes/brutal-ui": "^0.2.3",
+    "@unocss/astro": "^0.57.7",
+    "astro": "^5.18.0",
+    "astro-font": "^0.0.80",
+    "satori": "^0.5.0",
+    "satori-html": "^0.3.2"
   },
   "devDependencies": {
-    "@erquhart/rollup-plugin-node-builtins": "^2.1.5",
-    "bl": "^3.0.0",
-    "chokidar-cli": "^2.1.0",
-    "cross-env": "^5.2.1",
-    "make-dir-cli": "^2.0.0",
-    "prettier": "^1.19.1",
-    "rollup": "^1.32.1",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-json": "^4.0.0",
-    "rollup-plugin-node-resolve": "^5.2.0"
-  },
-  "scripts": {
-    "sass:tokens": "npx json-to-scss src/_data/tokens.json src/scss/_tokens.scss",
-    "sass:process": "npm run sass:tokens && sass src/scss/global.scss src/_includes/assets/css/global.css --style=compressed",
-    "cms:precompile": "make-dir dist/admin && nunjucks-precompile src/_includes > dist/admin/templates.js -i \"\\.(njk|css|svg)$\"",
-    "cms:bundle": "rollup --config",
-    "start": "concurrently \"npm run sass:process -- --watch\" \"npm run cms:bundle -- --watch\" \"chokidar \\\"src/_includes/**\\\" -c \\\"npm run cms:precompile\\\"\" \"npm run serve\"",
-    "serve": "cross-env ELEVENTY_ENV=development npx eleventy --serve",
-    "production": "npm run sass:process && npm run cms:precompile && npm run cms:bundle && npx eleventy"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/hankchizljaw/hylia.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/hankchizljaw/hylia/issues"
-  },
-  "homepage": "https://github.com/hankchizljaw/hylia#readme"
+    "@iconify-json/logos": "^1.1.41",
+    "@iconify-json/uil": "^1.1.8",
+    "@resvg/resvg-js": "^2.6.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "@unocss/reset": "^0.57.7",
+    "eslint": "^8.56.0",
+    "eslint-plugin-astro": "^0.29.1",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "prettier": "^3.1.1",
+    "prettier-plugin-astro": "^0.12.2",
+    "sharp": "^0.32.6",
+    "unocss": "^0.57.7"
+  }
 }

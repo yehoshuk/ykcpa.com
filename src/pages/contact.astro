@@ -1,0 +1,73 @@
+---
+import Layout from '@layouts/Default.astro';
+import { Card } from '@eliancodes/brutal-ui';
+import { Button } from '@eliancodes/brutal-ui';
+---
+
+<Layout
+  title='Contact'
+  pageTitle='ykcpa.com | Contact'
+  description='Get in touch with Josh Krupnick'
+>
+  <main class='bg-pink p-6'>
+    <section class='grid md:grid-cols-8 gap-8 mt-4'>
+      <div class='col-span-6 col-start-2'>
+        <Card>
+          <h1 class='text-2xl md:text-4xl lg:text-6xl mb-8 dm-serif'>Contact</h1>
+          <p class='poppins mb-8 text-lg'>
+            Have a question or want to get in touch? Fill out the form below.
+          </p>
+          <form
+            name='contact'
+            method='POST'
+            data-netlify='true'
+            netlify-honeypot='bot-field'
+            class='flex flex-col gap-4'
+          >
+            <input type='hidden' name='form-name' value='contact' />
+            <p class='hidden'>
+              <label>
+                Don't fill this out if you're human: <input name='bot-field' />
+              </label>
+            </p>
+            <div class='flex flex-col gap-2'>
+              <label for='name' class='poppins font-medium'>Name</label>
+              <input
+                type='text'
+                id='name'
+                name='name'
+                required
+                class='border-2 border-black p-3 poppins'
+              />
+            </div>
+            <div class='flex flex-col gap-2'>
+              <label for='email' class='poppins font-medium'>Email</label>
+              <input
+                type='email'
+                id='email'
+                name='email'
+                required
+                class='border-2 border-black p-3 poppins'
+              />
+            </div>
+            <div class='flex flex-col gap-2'>
+              <label for='message' class='poppins font-medium'>Message</label>
+              <textarea
+                id='message'
+                name='message'
+                rows='5'
+                required
+                class='border-2 border-black p-3 poppins'
+              ></textarea>
+            </div>
+            <div class='mt-4'>
+              <Button type='submit'>
+                Send Message &rarr;
+              </Button>
+            </div>
+          </form>
+        </Card>
+      </div>
+    </section>
+  </main>
+</Layout>
