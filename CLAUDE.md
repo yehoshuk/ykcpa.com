@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This is **ykcpa.com**, a personal blog/notes site built with [Eleventy (11ty)](https://www.11ty.dev/) static site generator, based on the [Hylia](https://github.com/hankchizljaw/hylia) starter kit. The site is deployed on Netlify and includes Netlify CMS for content management.
+This is **ykcpa.com**, a personal blog/notes site built with [Astro](https://astro.build/) using the [Brutal](https://github.com/eliancodes/brutal) neobrutalist theme. The site is deployed on Netlify.
 
 **Purpose**: A scratchpad for Excel, accounting, AI/LLM topics, and other technical notes.
 
@@ -12,52 +12,41 @@ This is **ykcpa.com**, a personal blog/notes site built with [Eleventy (11ty)](h
 
 | Component | Technology |
 |-----------|------------|
-| Static Site Generator | Eleventy 0.10.0 |
-| Templating | Nunjucks (.njk) |
-| Styling | Sass (SCSS) with Stalfos framework |
-| CMS | Netlify CMS |
+| Static Site Generator | Astro 5.x |
+| Theme | Brutal (neobrutalist) |
+| Styling | UnoCSS (Tailwind-compatible) |
 | Hosting | Netlify |
-| Build Tool | Rollup (for CMS bundling) |
+| TypeScript | Yes |
 
 ## Directory Structure
 
 ```
 ykcpa.com/
-├── .eleventy.js          # Eleventy configuration
+├── astro.config.ts       # Astro configuration
+├── uno.config.ts         # UnoCSS configuration
+├── tsconfig.json         # TypeScript config
 ├── netlify.toml          # Netlify build settings
 ├── package.json          # Dependencies and scripts
-├── rollup.config.js      # Rollup bundler config
+├── public/               # Static assets (favicon, etc.)
 ├── src/
-│   ├── _data/            # Global data files (JSON/JS)
-│   │   ├── site.json     # Site metadata (name, URL, author)
-│   │   ├── navigation.json # Navigation menu items
-│   │   ├── tokens.json   # Design tokens (colors, fonts, sizes)
-│   │   ├── global.js     # Global helpers
-│   │   └── helpers.js    # Template helper functions
-│   ├── _includes/
-│   │   ├── layouts/      # Page layouts (base, home, post, page)
-│   │   ├── partials/     # Reusable components
-│   │   ├── macros/       # Nunjucks macros
-│   │   ├── icons/        # SVG icons
-│   │   └── assets/css/   # Generated CSS (do not edit directly)
-│   ├── admin/            # Netlify CMS configuration
-│   │   └── config.yml    # CMS field definitions
-│   ├── posts/            # Blog posts (Markdown)
-│   │   └── posts.json    # Post collection config
-│   ├── pages/            # Static pages (Markdown)
-│   ├── scss/             # Sass source files
-│   │   ├── _config.scss  # Main Sass configuration
-│   │   ├── _tokens.scss  # Generated from tokens.json
-│   │   ├── _theme.scss   # Theme variables
-│   │   └── components/   # Component-specific styles
-│   ├── filters/          # Eleventy filters (date, markdown)
-│   ├── transforms/       # HTML transforms (minification, parsing)
-│   ├── fonts/            # Web fonts
-│   ├── images/           # Static images
-│   ├── js/               # Client-side JavaScript
-│   └── index.md          # Homepage content
-├── archive/              # Archived/sample posts (not published)
-└── dist/                 # Build output (generated, gitignored)
+│   ├── assets/           # Images processed by Astro
+│   ├── components/
+│   │   ├── blog/         # Blog-specific components
+│   │   ├── generic/      # Reusable components
+│   │   ├── home/         # Homepage components
+│   │   ├── layout/       # Header, footer, navigation
+│   │   └── errors/       # Error page components
+│   ├── content.config.ts # Content collection schema
+│   ├── data/
+│   │   └── blog/         # Blog posts (Markdown)
+│   ├── layouts/          # Page layouts
+│   ├── pages/            # Route pages (.astro)
+│   │   ├── index.astro   # Homepage
+│   │   ├── contact.astro # Contact page
+│   │   ├── blog/         # Blog routes
+│   │   └── feed.xml.js   # RSS feed
+│   └── styles/           # Global CSS
+└── dist/                 # Build output (gitignored)
 ```
 
 ## Development Commands
@@ -66,17 +55,14 @@ ykcpa.com/
 # Install dependencies
 npm install
 
-# Start development server (watches files, serves at localhost:8080)
-npm start
+# Start development server (localhost:4321)
+npm run dev
 
 # Build for production
-npm run production
+npm run build
 
-# Compile Sass only
-npm run sass:process
-
-# Regenerate design tokens for Sass
-npm run sass:tokens
+# Preview production build
+npm run preview
 ```
 
 ## Key Files to Know
@@ -85,198 +71,97 @@ npm run sass:tokens
 
 | File | Purpose |
 |------|---------|
-| `src/posts/*.md` | Blog posts - Markdown with YAML frontmatter |
-| `src/pages/*.md` | Static pages (contact, thank-you, etc.) |
-| `src/index.md` | Homepage content |
-| `src/_data/site.json` | Site name, URL, author info |
-| `src/_data/navigation.json` | Navigation menu links |
-
-### Styling & Theming
-
-| File | Purpose |
-|------|---------|
-| `src/_data/tokens.json` | Design tokens (colors, fonts, sizes) |
-| `src/scss/_config.scss` | Sass configuration and utility generation |
-| `src/scss/global.scss` | Main stylesheet entry point |
+| `src/data/blog/*.md` | Blog posts - Markdown with YAML frontmatter |
+| `src/pages/index.astro` | Homepage |
+| `src/pages/contact.astro` | Contact form (Netlify Forms) |
+| `src/content.config.ts` | Blog post schema definition |
 
 ### Configuration
 
 | File | Purpose |
 |------|---------|
-| `.eleventy.js` | Eleventy config (filters, collections, plugins) |
-| `src/admin/config.yml` | Netlify CMS content types and fields |
-| `netlify.toml` | Netlify build command and publish directory |
+| `astro.config.ts` | Astro config (site URL, integrations) |
+| `uno.config.ts` | UnoCSS/Tailwind utilities |
+| `netlify.toml` | Netlify build command |
+
+### Layout & Components
+
+| File | Purpose |
+|------|---------|
+| `src/layouts/Default.astro` | Base page layout |
+| `src/layouts/BlogPost.astro` | Blog post layout |
+| `src/components/layout/BaseNavigation.astro` | Site navigation |
+| `src/components/layout/BaseFooter.astro` | Site footer |
 
 ## Creating Content
 
 ### New Blog Post
 
-Create a new Markdown file in `src/posts/` with this frontmatter:
+Create a new Markdown file in `src/data/blog/` with this frontmatter:
 
 ```markdown
 ---
 title: Your Post Title
-date: '2025-01-15'
+pubDate: 03/20/2026
+author: "Josh Krupnick"
 tags:
   - Excel
   - accounting
+description: A brief description for previews and SEO.
 ---
 
 Your post content here...
 ```
 
 **Notes:**
-- Posts automatically use `layouts/post.njk` via `src/posts/posts.json`
-- Future-dated posts won't appear until that date
+- `pubDate` format: MM/DD/YYYY
+- `imgUrl` is optional (for featured images)
 - Add `draft: true` to hide a post
 
 ### Frontmatter Fields
 
 | Field | Required | Description |
 |-------|----------|-------------|
-| `title` | Yes | Post/page title |
-| `date` | Yes (posts) | Publish date (YYYY-MM-DD format) |
-| `tags` | No | Array of tag names |
-| `metaTitle` | No | SEO title override |
-| `metaDesc` | No | SEO description |
-| `socialImage` | No | Social media share image path |
+| `title` | Yes | Post title |
+| `pubDate` | Yes | Publish date (MM/DD/YYYY) |
+| `author` | Yes | Author name |
+| `tags` | Yes | Array of tag names |
+| `description` | Yes | SEO/preview description |
+| `imgUrl` | No | Featured image path |
 | `draft` | No | Set to `true` to hide post |
 
-## Theming
+## Styling
 
-Design tokens in `src/_data/tokens.json` control the visual theme:
+Uses UnoCSS with Tailwind-compatible utility classes. The theme provides:
 
-```json
-{
-  "colors": {
-    "primary": "#34d399",      // Main brand color (green)
-    "primary-shade": "#10b981", // Darker variant
-    "primary-glare": "#d1fae5", // Lighter variant
-    "highlight": "#fef9c3",     // Accent/highlight
-    "light": "#ffffff",
-    "mid": "#f3f4f6",
-    "dark": "#374151",
-    "slate": "#6b7280"
-  }
-}
-```
+- `poppins` - Body text font
+- `outfit` - Display font
+- `dm-serif` - Serif headings
+- `righteous` - Logo/brand font
+- `card-shadow` - Neobrutalist box shadow
 
-After editing tokens, run `npm run sass:tokens` to regenerate `_tokens.scss`.
-
-## Eleventy Concepts
-
-### Collections
-
-- `posts` - All published blog posts (reverse chronological)
-- `postFeed` - Posts for homepage (limited by `maxPostsPerPage`)
-
-### Filters
-
-| Filter | Usage | Description |
-|--------|-------|-------------|
-| `dateFilter` | `{{ date \| dateFilter }}` | Human-readable date |
-| `w3DateFilter` | `{{ date \| w3DateFilter }}` | ISO 8601 date format |
-| `markdownFilter` | `{{ content \| markdownFilter }}` | Render Markdown |
-
-### Layouts
-
-| Layout | Used For |
-|--------|----------|
-| `base.njk` | Base HTML structure |
-| `home.njk` | Homepage |
-| `post.njk` | Blog posts |
-| `page.njk` | Generic pages |
-| `archive.njk` | Post archive listing |
-
-## CSS Utility Classes
-
-The Stalfos framework generates utility classes with `sf-` prefix:
-
-```html
-<!-- Examples -->
-<div class="sf-flow">           <!-- Vertical spacing -->
-<span class="text-500">         <!-- Font size scale -->
-<p class="leading-loose">       <!-- Line height -->
-<div class="pad-top-900">       <!-- Padding -->
-<div class="box-flex align-center"> <!-- Flexbox -->
-```
-
-## Common Tasks
-
-### Add a Navigation Link
-
-Edit `src/_data/navigation.json`:
-
-```json
-{
-  "items": [
-    {"text": "Home", "url": "/", "external": false},
-    {"text": "New Link", "url": "/new-page/", "external": false}
-  ]
-}
-```
-
-### Modify Site Metadata
-
-Edit `src/_data/site.json`:
-
-```json
-{
-  "name": "ykcpa.com",
-  "url": "https://ykcpa.com",
-  "authorName": "Josh Krupnick",
-  "maxPostsPerPage": 3
-}
-```
-
-### Add a New Page
-
-1. Create `src/pages/new-page.md`
-2. Add frontmatter:
-
-```markdown
----
-layout: layouts/page.njk
-title: New Page Title
-permalink: /new-page/index.html
----
-```
+Colors: `bg-pink`, `bg-green`, `bg-blue`, `text-white`, etc.
 
 ## Deployment
 
-The site auto-deploys to Netlify on push to `master` branch:
+Auto-deploys to Netlify on push to `master`:
 
-1. Netlify runs `npm run production`
+1. Netlify runs `npm run build`
 2. Builds to `dist/` directory
 3. Deploys static files
 
-## Netlify CMS
+## Contact Form
 
-Access the CMS at `/admin` on the live site. Requires Netlify Identity authentication.
-
-**CMS-editable content:**
-- Homepage
-- Blog posts
-- Generic pages
-- Site settings (name, URL, author)
-- Navigation
-- Theme tokens
+The contact page uses Netlify Forms with honeypot spam protection. Form submissions go to the Netlify dashboard.
 
 ## Code Conventions
 
-1. **Markdown files**: Use standard Markdown with YAML frontmatter
-2. **Nunjucks templates**: 2-space indentation, use partials for reusability
-3. **Sass/SCSS**: Follow Stalfos patterns, use design tokens via functions
-4. **JavaScript**: ES modules, minimal client-side JS
-
-## Important Notes
-
-- The `dist/` folder is gitignored - never commit build output
-- CSS is inlined in the base template for performance
-- Service worker caches pages for offline reading
-- Third-party comments are disabled by default (`enableThirdPartyComments: false`)
+1. **Blog posts**: Markdown with YAML frontmatter in `src/data/blog/`
+2. **Components**: Astro components (.astro) with TypeScript frontmatter
+3. **Styling**: UnoCSS utility classes (Tailwind-compatible)
+4. **Pages**: File-based routing in `src/pages/`
 
 ## Repository
 
 - **Source**: https://github.com/yehoshuk/ykcpa.com
-- **Based on**: [Hylia Starter Kit](https://github.com/hankchizljaw/hylia)
+- **Theme**: [Brutal](https://github.com/eliancodes/brutal) by ElianCodes

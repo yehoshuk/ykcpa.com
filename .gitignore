@@ -1,13 +1,23 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
 *.log
 npm-debug.*
-*.scssc
-*.log
-*.swp
-.DS_Store
-.sass-cache
-node_modules
-dist 
 
+# OS files
+.DS_Store
+*.swp
+
+# Editor
 .vscode/settings.json
 .vscode/extensions.json
 .vscode/launch.json
@@ -15,11 +25,10 @@ dist
 .vscode/*.code-workspace
 .vscode/*.sublime-workspace
 .vscode/*.sublime-project
+.idea/
 
-# Specifics
+# Astro
+.astro/
 
-# Hide design tokens
-src/scss/_tokens.scss
-
-# Hide compiled CSS
-src/_includes/assets/*
+# Migration backup (temporary)
+_migration_backup/
